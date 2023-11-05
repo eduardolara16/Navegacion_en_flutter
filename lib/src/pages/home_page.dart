@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_navegacion/src/pages/direction_page.dart';
+import 'package:flutter_application_1/src/models/car.dart';
+import 'package:flutter_application_1/src/pages/bicycle/bicycle_page.dart';
+import 'package:flutter_application_1/src/pages/car/car_page.dart';
+import 'package:flutter_application_1/src/pages/direction/direction_page.dart';
 
 class HomePages extends StatelessWidget {
   const HomePages({super.key});
@@ -23,26 +26,20 @@ class HomePages extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            _tabCar(),
+            CarPage(
+              cars: List.generate(
+                10,
+                (i) => Car(
+                  'Toyota $i',
+                  'Modelo deportivo $i',
+                ),
+              ),
+            ),
             const DirectionPage(),
-            const Center(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                  Text("Informacion de lugar"),
-                  Icon(Icons.bike_scooter)
-                ])),
+            BicyclePage(),
           ],
         ),
       ),
     );
-  }
-
-  Widget _tabCar() {
-    return const Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Text("Informacion del vehiculo"),
-      Icon(Icons.car_crash)
-    ]));
   }
 }
